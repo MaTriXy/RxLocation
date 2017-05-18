@@ -1,6 +1,6 @@
 # Reactive Location API Library for Android
 
-[![Build Status](https://travis-ci.org/patloew/RxLocation.svg?branch=master)](https://travis-ci.org/patloew/RxLocation) [![codecov](https://codecov.io/gh/patloew/RxLocation/branch/master/graph/badge.svg)](https://codecov.io/gh/patloew/RxLocation) [![Download](https://api.bintray.com/packages/patloew/maven/RxLocation/images/download.svg) ](https://bintray.com/patloew/maven/RxLocation/_latestVersion) [![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=9)
+[![Build Status](https://travis-ci.org/patloew/RxLocation.svg?branch=master)](https://travis-ci.org/patloew/RxLocation) [![codecov](https://codecov.io/gh/patloew/RxLocation/branch/master/graph/badge.svg)](https://codecov.io/gh/patloew/RxLocation) [![Download](https://api.bintray.com/packages/patloew/maven/RxLocation/images/download.svg) ](https://bintray.com/patloew/maven/RxLocation/_latestVersion) [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 
 This library wraps the Location APIs in [RxJava 2](https://github.com/ReactiveX/RxJava/tree/2.x) Observables, Singles, Maybes and Completables. No more managing GoogleApiClients! Also, the resolution of the location settings check is optionally handled by the lib.
 
@@ -58,15 +58,17 @@ disposable.add(rxLocation.location().updates(locationRequest).subscribe());
 disposable.clear();
 ```
 
-You can also obtain a `Single<GoogleApiClient>`, which connects on subscribe and disconnects on unsubscribe via `GoogleAPIClientSingle.create(...)`.
+You can also obtain a `Flowable<GoogleApiClient>`, which connects on subscribe and disconnects on dispose via `GoogleApiClientFlowable.create(...)`.
 
 The following Exceptions are thrown in the lib and provided via `onError()`:
 
 * `StatusException`: When the call to the Location APIs was not successful or timed out
-* `GoogleAPIConnectionException`: When connecting to the GoogleAPIClient was not successful.
-* `GoogleAPIConnectionSuspendedException`: When the GoogleApiClient connection was suspended.
+* `GoogleApiConnectionException`: When connecting to the GoogleApiClient was not successful.
+* `GoogleApiConnectionSuspendedException`: When the GoogleApiClient connection was suspended.
 * `SecurityException`: When you try to call an API without proper permissions.
 * `LocationSettingsNotSatisfiedException`: When you use `rxLocation.settings().checkAndHandleResolutionCompletable(...)` and the location settings were not satisfied, even after handling the resolution.
+
+When using the Geocoding component of RxLocation, exceptions can be thrown even after disposing, which can lead to app crashes. To prevent this, install a global `RxJavaPlugins.setErrorHandler()`, e.g. in your Application class.
 
 # Sample
 
@@ -76,9 +78,11 @@ A basic sample app is available in the `sample` project.
 
 The lib is available on jCenter. Add the following to your `build.gradle`:
 
-	dependencies {
-	    compile 'com.patloew.rxlocation:rxlocation:1.0.1'
-	}
+```groovy
+dependencies {
+    compile 'com.patloew.rxlocation:rxlocation:1.0.3'
+}
+```
 
 # Testing
 
