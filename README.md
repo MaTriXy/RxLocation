@@ -80,7 +80,19 @@ The lib is available on jCenter. Add the following to your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'com.patloew.rxlocation:rxlocation:1.0.3'
+    compile 'com.patloew.rxlocation:rxlocation:1.0.4'
+}
+```
+
+From v1.0.4 on, RxLocation only works with Android gradle plugin 3.0.0 or higher, since it uses Java 8 language features.  
+And don't forget to set the source code compatibility to Java 8:
+
+```groovy
+android {
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
 }
 ```
 
@@ -91,6 +103,10 @@ When unit testing your app's classes, RxLocation behavior can be mocked easily. 
 # Credits
 
 The code for managing the GoogleApiClient was adapted from the [Android-ReactiveLocation](https://github.com/mcharmas/Android-ReactiveLocation) library by Michał Charmas, which is licensed under the Apache License, Version 2.0.
+
+# Donations
+
+If you like the library and want to support the creator for development/maintenance, you can make a donation in Bitcoin to [1HSPW3NUZjfzsrkVxToWhiScfCnW7adwxk](bitcoin:1HSPW3NUZjfzsrkVxToWhiScfCnW7adwxk). Thank you!
 
 # License
 
