@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/patloew/RxLocation.svg?branch=master)](https://travis-ci.org/patloew/RxLocation) [![codecov](https://codecov.io/gh/patloew/RxLocation/branch/master/graph/badge.svg)](https://codecov.io/gh/patloew/RxLocation) [![Download](https://api.bintray.com/packages/patloew/maven/RxLocation/images/download.svg) ](https://bintray.com/patloew/maven/RxLocation/_latestVersion) [![API](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 
+**This library is now deprecated and not maintained anymore. Please switch to the [CoLocation](https://github.com/patloew/CoLocation) library.**
+
 This library wraps the Location APIs in [RxJava 2](https://github.com/ReactiveX/RxJava/tree/2.x) Observables, Singles, Maybes and Completables. No more managing GoogleApiClients! Also, the resolution of the location settings check is optionally handled by the lib.
 
 For [RxJava 1](https://github.com/ReactiveX/RxJava/tree/1.x), please take a look at the [Android-ReactiveLocation](https://github.com/mcharmas/Android-ReactiveLocation) library by Michał Charmas.
@@ -76,13 +78,16 @@ A basic sample app is available in the `sample` project.
 
 # Setup
 
-The lib is available on jCenter. Add the following to your `build.gradle`:
+The latest version 1.0.5 of this library is available on Maven Central. Add the following to your `build.gradle`:
 
 ```groovy
 dependencies {
-    compile 'com.patloew.rxlocation:rxlocation:1.0.4'
+    compile 'com.patloew.rxlocation:rxlocation:1.0.5'
+    compile 'com.google.android.gms:play-services-location:15.0.0'
 }
 ```
+
+If you want to use a newer version of Google Play Services, declare the newer version in your `build.gradle`. This then overrides the version declared in the library.
 
 From v1.0.4 on, RxLocation only works with Android gradle plugin 3.0.0 or higher, since it uses Java 8 language features.  
 And don't forget to set the source code compatibility to Java 8:
@@ -106,7 +111,7 @@ The code for managing the GoogleApiClient was adapted from the [Android-Reactive
 
 # Donations
 
-If you like the library and want to support the creator for development/maintenance, you can make a donation in Bitcoin to [1HSPW3NUZjfzsrkVxToWhiScfCnW7adwxk](bitcoin:1HSPW3NUZjfzsrkVxToWhiScfCnW7adwxk). Thank you!
+If you like the library and want to support the creator for development/maintenance, you can make a donation in Bitcoin to `bc1q5uejfyl2kskhhveg7lx4fcwgv8hz88r92yzjsu`. Thank you!
 
 # License
 
